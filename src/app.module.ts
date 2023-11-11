@@ -6,6 +6,7 @@ import { AddressModule } from './address/address.module';
 import { ContactModule } from './contact/contact.module';
 import { IndividualPersonModule } from './individual-person/individual-person.module';
 import { EnterprisePersonModule } from './enterprise-person/enterprise-person.module';
+import { PersonModule } from './person/person.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { EnterprisePersonModule } from './enterprise-person/enterprise-person.mo
     ContactModule,
     IndividualPersonModule,
     EnterprisePersonModule,
+    PersonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
