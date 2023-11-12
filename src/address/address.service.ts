@@ -27,20 +27,23 @@ export class AddressService {
         return {
           success: false,
           model: 'address',
-          errors
+          errors,
+          entity: undefined,
         }
       } else {
         const entity = await runner.manager.save(Address, address);
         if (!entity) return {
           success: false,
           model: 'address',
-          errors: 'Erro ao salvar o endereço.'
+          errors: 'Erro ao salvar o endereço.',
+          entity,
         };
 
         return {
           success: true,
           model: 'address',
           errors: [],
+          entity,
         };
       }
     } catch (e) {
@@ -49,6 +52,7 @@ export class AddressService {
         success: false,
         model: 'address',
         errors: (e as TypeORMError).message,
+        entity: undefined,
       };
     }
   }
@@ -59,13 +63,15 @@ export class AddressService {
       if (!entity) return {
         success: false,
         model: 'address',
-        errors: 'Erro ao remover o endereço.'
+        errors: 'Erro ao remover o endereço.',
+        entity,
       };
 
       return {
         success: true,
         model: 'address',
         errors: [],
+        entity,
       };
     } catch (e) {
       console.error((e as TypeORMError).message);
@@ -73,6 +79,7 @@ export class AddressService {
         success: false,
         model: 'address',
         errors: (e as TypeORMError).message,
+        entity: undefined,
       };
     }
   }

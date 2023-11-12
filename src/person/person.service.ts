@@ -25,17 +25,18 @@ export class PersonService {
           success: false,
           model: 'person',
           errors,
+          entity: undefined,
         };
       } else {
         const entity = await runner.manager.save(Person, person);
         if (!entity)
-          return { success: false, model: 'person', errors: 'Erro ao salvar a pessoa.' };
+          return { success: false, model: 'person', errors: 'Erro ao salvar a pessoa.', entity };
         else
-          return { success: true, model: 'person', errors: [] };
+          return { success: true, model: 'person', errors: [], entity };
       }
     } catch (e) {
       console.error((e as TypeORMError).message);
-      return { success: false, model: 'person', errors: (e as TypeORMError).message };
+      return { success: false, model: 'person', errors: (e as TypeORMError).message, entity: undefined };
     }
   }
 
@@ -43,12 +44,12 @@ export class PersonService {
     try {
       const entity = await runner.manager.remove(Person, person);
       if (!entity)
-        return { success: false, model: 'person', errors: 'Erro ao remover a pessoa.' };
+        return { success: false, model: 'person', errors: 'Erro ao remover a pessoa.', entity };
       else
-        return { success: true, model: 'person', errors: [] };
+        return { success: true, model: 'person', errors: [], entity };
     } catch (e) {
       console.error((e as TypeORMError).message);
-      return { success: false, model: 'person', errors: (e as TypeORMError).message };
+      return { success: false, model: 'person', errors: (e as TypeORMError).message, entity: undefined };
     }
   }
 }

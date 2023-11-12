@@ -25,6 +25,7 @@ export class EnterprisePersonService {
           success: false,
           model: 'enterprise-person',
           errors,
+          entity: undefined,
         };
       } else {
         const entity = await runner.manager.save(EnterprisePerson, person);
@@ -33,12 +34,14 @@ export class EnterprisePersonService {
             success: false,
             model: 'enterprise-person',
             errors: 'Erro ao salvar a pessoa jurídica',
+            entity,
           };
         } else {
           return {
             success: true,
             model: 'enterprise-person',
             errors: [],
+            entity,
           };
         }
       }
@@ -48,6 +51,7 @@ export class EnterprisePersonService {
         success: false,
         model: 'enterprise-person',
         errors: (e as TypeORMError).message,
+        entity: undefined,
       };
     }
   }
@@ -60,12 +64,14 @@ export class EnterprisePersonService {
           success: false,
           model: 'enterprise-person',
           errors: 'Erro ao remover a pessoa jurídica',
+          entity,
         };
       } else {
         return {
           success: true,
           model: 'enterprise-person',
           errors: [],
+          entity,
         };
       }
     } catch (e) {
@@ -74,6 +80,7 @@ export class EnterprisePersonService {
         success: false,
         model: 'enterprise-person',
         errors: (e as TypeORMError).message,
+        entity: undefined,
       };
     }
   }

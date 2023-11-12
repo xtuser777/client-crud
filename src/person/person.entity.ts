@@ -3,7 +3,7 @@ import { Address } from "src/address/address.entity";
 import { Contact } from "src/contact/contact.entity";
 import { EnterprisePerson } from "src/enterprise-person/enterprise-person.entity";
 import { IndividualPerson } from "src/individual-person/individual-person.entity";
-import { Column, Entity, In, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'person' })
 export class Person {
@@ -16,13 +16,13 @@ export class Person {
   @Column()
   public type: number;
 
-  @OneToOne(() => IndividualPerson)
+  @OneToOne(() => IndividualPerson, { nullable: true })
   @JoinColumn({ name: 'individual_person_id' })
-  public individual: IndividualPerson;
+  public individual?: IndividualPerson;
   
-  @OneToOne(() => EnterprisePerson)
+  @OneToOne(() => EnterprisePerson, { nullable: true })
   @JoinColumn({ name: 'enterprise_person_id' })
-  public enterprise: EnterprisePerson;
+  public enterprise?: EnterprisePerson;
   
   @IsNotEmpty({ message: 'O endereço da pessoa precisa ser vinculado.' })
   @OneToOne(() => Address)
