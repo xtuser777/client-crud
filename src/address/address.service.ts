@@ -6,8 +6,6 @@ import { validate } from "class-validator";
 
 @Injectable()
 export class AddressService {  
-  constructor() {}
-
   async findOne(where: { id?: number; }, runner: QueryRunner): Promise<Address | undefined> {
     let address: Address | undefined = undefined;
 
