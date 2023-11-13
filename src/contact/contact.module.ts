@@ -6,5 +6,6 @@ import { ContactService } from './contact.service';
 @Module({
   imports: [TypeOrmModule.forFeature([Contact])],
   providers: [ContactService],
+  exports: [ContactService],
 })
 export class ContactModule {}
